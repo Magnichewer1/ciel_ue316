@@ -20,6 +20,9 @@ class Commentaire
     #[ORM\ManyToOne(inversedBy: 'commentaires')]
     private ?Sujet $sujet = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,18 @@ class Commentaire
     public function setSujet(?Sujet $sujet): static
     {
         $this->sujet = $sujet;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

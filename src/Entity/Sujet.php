@@ -28,6 +28,9 @@ class Sujet
     #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'sujet')]
     private Collection $commentaires;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
@@ -88,6 +91,18 @@ class Sujet
                 $commentaire->setSujet(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
